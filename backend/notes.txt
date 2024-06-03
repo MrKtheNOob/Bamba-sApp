@@ -1,6 +1,0 @@
-{
-    question:"phrase +... for answer"
-    choices:[an1,an2,an3]
-    answer:index of array of potential good answers
-
-}
