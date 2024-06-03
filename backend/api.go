@@ -7,6 +7,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -67,5 +68,9 @@ func main() {
 	http.HandleFunc("/", loadPage)
 	http.HandleFunc("/getquestion", giveQuestion)
 	fmt.Println("Server listening on 192.168.1.20:8080")
-	http.ListenAndServe("0.0.0.0:8080", nil)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	http.ListenAndServe("0.0.0.0:"+port, nil)
 }
