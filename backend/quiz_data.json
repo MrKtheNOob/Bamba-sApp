@@ -90,21 +90,6 @@
         "answer": "tried"
     },
     {
-        "question": "I ___ learning how to code.",
-        "options": ["am", "was", "will be"],
-        "answer": "am"
-    },
-    {
-        "question": "She ___ the project last week.",
-        "options": ["completed", "completes", "will complete"],
-        "answer": "completed"
-    },
-    {
-        "question": "They ___ to the new house next month.",
-        "options": ["move", "moved", "will move"],
-        "answer": "will move"
-    },
-    {
         "question": "He ___ at the conference yesterday.",
         "options": ["spoke", "speaks", "will speak"],
         "answer": "spoke"
@@ -211,6 +196,336 @@
     },
     {
         "question": "We ___ a lot of fun last weekend.",
+        "options": ["had", "have", "will have"],
+        "answer": "had"
+    },
+    {
+        "question": "You ___ an interesting story.",
+        "options": ["told", "tell", "will tell"],
+        "answer": "told"
+    },
+    {
+        "question": "The cake ___ delicious.",
+        "options": ["tastes", "tasted", "will taste"],
+        "answer": "tastes"
+    },
+    {
+        "question": "She ___ her keys yesterday.",
+        "options": ["lost", "loses", "will lose"],
+        "answer": "lost"
+    },
+    {
+        "question": "He ___ a new friend.",
+        "options": ["makes", "made", "will make"],
+        "answer": "made"
+    },
+    {
+        "question": "They ___ a lot of money last year.",
+        "options": ["saved", "save", "will save"],
+        "answer": "saved"
+    },
+    {
+        "question": "We ___ the answer now.",
+        "options": ["know", "knew", "will know"],
+        "answer": "know"
+    },
+    {
+        "question": "You ___ very well in the test.",
+        "options": ["did", "do", "will do"],
+        "answer": "did"
+    },
+    {
+        "question": "The cat ___ on the couch.",
+        "options": ["sleeps", "slept", "will sleep"],
+        "answer": "sleeps"
+    },
+    {
+        "question": "She ___ the letter yesterday.",
+        "options": ["sent", "sends", "will send"],
+        "answer": "sent"
+    },
+    {
+        "question": "He ___ his best friend now.",
+        "options": ["sees", "saw", "will see"],
+        "answer": "sees"
+    },
+    {
+        "question": "They ___ a new song tomorrow.",
+        "options": ["sing", "sang", "will sing"],
+        "answer": "will sing"
+    },
+    {
+        "question": "We ___ the meeting last week.",
+        "options": ["attended", "attend", "will attend"],
+        "answer": "attended"
+    },
+    {
+        "question": "You ___ a great idea!",
+        "options": ["had", "have", "will have"],
+        "answer": "had"
+    },
+    {
+        "question": "The event ___ next month.",
+        "options": ["is", "was", "will be"],
+        "answer": "will be"
+    },
+    {
+        "question": "She ___ a new dress for the party.",
+        "options": ["bought", "buys", "will buy"],
+        "answer": "bought"
+    },
+    {
+        "question": "He ___ the report yesterday.",
+        "options": ["finished", "finishes", "will finish"],
+        "answer": "finished"
+    },
+    {
+        "question": "They ___ the project next week.",
+        "options": ["start", "started", "will start"],
+        "answer": "will start"
+    },
+    {
+        "question": "We ___ the presentation now.",
+        "options": ["give", "gave", "will give"],
+        "answer": "give"
+    },
+    {
+        "question": "You ___ an excellent job!",
+        "options": ["did", "do", "will do"],
+        "answer": "did"
+    },
+    {
+        "question": "The baby ___ happily.",
+        "options": ["smiles", "smiled", "will smile"],
+        "answer": "smiles"
+    },
+    {
+        "question": "She ___ her homework yesterday.",
+        "options": ["did", "does", "will do"],
+        "answer": "did"
+    },
+    {
+        "question": "He ___ a new song last night.",
+        "options": ["sang", "sings", "will sing"],
+        "answer": "sang"
+    },
+    {
+        "question": "They ___ to the concert tomorrow.",
+        "options": ["go", "went", "will go"],
+        "answer": "will go"
+    },
+    {
+        "question": "We ___ a picnic last weekend.",
+        "options": ["had", "have", "will have"],
+        "answer": "had"
+    },
+    {
+        "question": "You ___ the answer now.",
+        "options": ["know", "knew", "will know"],
+        "answer": "know"
+    },
+    {
+        "question": "The dog ___ happily.",
+        "options": ["barks", "barked", "will bark"],
+        "answer": "barks"
+    },
+    {
+        "question": "She ___ the book yesterday.",
+        "options": ["read", "reads", "will read"],
+        "answer": "read"
+    },
+    {
+        "question": "He ___ a new job last month.",
+        "options": ["got", "gets", "will get"],
+        "answer": "got"
+    },
+    {
+        "question": "They ___ a new house next year.",
+        "options": ["buy", "bought", "will buy"],
+        "answer": "will buy"
+    },
+    {
+        "question": "We ___ a lot of work yesterday.",
+        "options": ["did", "do", "will do"],
+        "answer": "did"
+    },
+    {
+        "question": "You ___ a wonderful time.",
+        "options": ["had", "have", "will have"],
+        "answer": "had"
+    },
+    {
+        "question": "The meeting ___ tomorrow.",
+        "options": ["is", "was", "will be"],
+        "answer": "will be"
+    },
+    {
+        "question": "She ___ her phone yesterday.",
+        "options": ["lost", "loses", "will lose"],
+        "answer": "lost"
+    },
+    {
+        "question": "He ___ very tired now.",
+        "options": ["is", "was", "will be"],
+        "answer": "is"
+    },
+    {
+        "question": "They ___ their homework now.",
+        "options": ["do", "did", "will do"],
+        "answer": "do"
+    },
+    {
+        "question": "We ___ a new car last week.",
+        "options": ["bought", "buy", "will buy"],
+        "answer": "bought"
+    },
+    {
+        "question": "You ___ very well in the competition.",
+        "options": ["did", "do", "will do"],
+        "answer": "did"
+    },
+    {
+        "question": "The movie ___ at 8 PM.",
+        "options": ["starts", "started", "will start"],
+        "answer": "starts"
+    },
+    {
+        "question": "She ___ the exam last week.",
+        "options": ["passed", "passes", "will pass"],
+        "answer": "passed"
+    },
+    {
+        "question": "He ___ his friends yesterday.",
+        "options": ["visited", "visits", "will visit"],
+        "answer": "visited"
+    },
+    {
+        "question": "They ___ a lot of fun now.",
+        "options": ["are having", "were having", "will be having"],
+        "answer": "are having"
+    },
+    {
+        "question": "We ___ a party next month.",
+        "options": ["have", "had", "will have"],
+        "answer": "will have"
+    },
+    {
+        "question": "You ___ very excited now.",
+        "options": ["are", "were", "will be"],
+        "answer": "are"
+    },
+    {
+        "question": "The weather ___ nice today.",
+        "options": ["is", "was", "will be"],
+        "answer": "is"
+    },
+    {
+        "question": "She ___ her car yesterday.",
+        "options": ["washed", "washes", "will wash"],
+        "answer": "washed"
+    },
+    {
+        "question": "He ___ a new book next month.",
+        "options": ["writes", "wrote", "will write"],
+        "answer": "will write"
+    },
+    {
+        "question": "They ___ a new friend today.",
+        "options": ["make", "made", "will make"],
+        "answer": "make"
+    },
+    {
+        "question": "We ___ the test yesterday.",
+        "options": ["finished", "finish", "will finish"],
+        "answer": "finished"
+    },
+    {
+        "question": "You ___ a great job now.",
+        "options": ["are doing", "were doing", "will be doing"],
+        "answer": "are doing"
+    },
+    {
+        "question": "The baby ___ happily now.",
+        "options": ["is smiling", "was smiling", "will be smiling"],
+        "answer": "is smiling"
+    },
+    {
+        "question": "She ___ her room yesterday.",
+        "options": ["cleaned", "cleans", "will clean"],
+        "answer": "cleaned"
+    },
+    {
+        "question": "He ___ a new hobby next year.",
+        "options": ["starts", "started", "will start"],
+        "answer": "will start"
+    },
+    {
+        "question": "They ___ a delicious meal now.",
+        "options": ["are cooking", "were cooking", "will be cooking"],
+        "answer": "are cooking"
+    },
+    {
+        "question": "We ___ the game last night.",
+        "options": ["won", "win", "will win"],
+        "answer": "won"
+    },
+    {
+        "question": "You ___ very happy now.",
+        "options": ["are", "were", "will be"],
+        "answer": "are"
+    },
+    {
+        "question": "The concert ___ at 7 PM.",
+        "options": ["starts", "started", "will start"],
+        "answer": "starts"
+    },
+    {
+        "question": "She ___ a new dress yesterday.",
+        "options": ["bought", "buys", "will buy"],
+        "answer": "bought"
+    },
+    {
+        "question": "He ___ the book last night.",
+        "options": ["read", "reads", "will read"],
+        "answer": "read"
+    },
+    {
+        "question": "They ___ the party now.",
+        "options": ["are enjoying", "were enjoying", "will be enjoying"],
+        "answer": "are enjoying"
+    },
+    {
+        "question": "We ___ the meeting next week.",
+        "options": ["attend", "attended", "will attend"],
+        "answer": "will attend"
+    },
+    {
+        "question": "You ___ the project last week.",
+        "options": ["completed", "complete", "will complete"],
+        "answer": "completed"
+    },
+    {
+        "question": "The event ___ at 9 AM.",
+        "options": ["starts", "started", "will start"],
+        "answer": "starts"
+    },
+    {
+        "question": "She ___ her bike yesterday.",
+        "options": ["rode", "rides", "will ride"],
+        "answer": "rode"
+    },
+    {
+        "question": "He ___ a new song today.",
+        "options": ["sings", "sang", "will sing"],
+        "answer": "sings"
+    },
+    {
+        "question": "They ___ the car now.",
+        "options": ["are driving", "were driving", "will be driving"],
+        "answer": "are driving"
+    },
+    {
+        "question": "You ___ a new idea.",
         "options": ["had", "have", "will have"],
         "answer": "had"
     }
