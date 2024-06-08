@@ -62,9 +62,6 @@
                     });
             }
             getData();
-            function fin() {
-                // make a congratualtion display that removes all the other elements
-            }
             function ev0() {
                 if (options[0].textContent == fdata.answer) {
                     evaluationdiv.textContenft = "right answer";
@@ -73,6 +70,7 @@
                     scorel.textContent = `score:${score}`;
                 } else {
                     evaluationdiv.textContent = "wrong answer";
+                    score--
                 }
             }
             function ev1() {
@@ -83,6 +81,7 @@
                     scorel.textContent = `score:${score}`;
                 } else {
                     evaluationdiv.textContent = "wrong answer";
+                    score--
                 }
             }
             function ev2() {
@@ -93,6 +92,7 @@
                     scorel.textContent = `score:${score}`;
                 } else {
                     evaluationdiv.textContent = "wrong answer";
+                    score--
                 }
             }
         </script>
