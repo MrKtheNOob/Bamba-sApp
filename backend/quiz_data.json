@@ -285,6 +285,211 @@
         "answer": "will start"
     },
     {
+        "question": "He ___ very hard for the exam.",
+        "options": ["studies", "studied", "will study"],
+        "answer": "studied"
+    },
+    {
+        "question": "She ___ a wonderful singer.",
+        "options": ["is", "was", "will be"],
+        "answer": "is"
+    },
+    {
+        "question": "They ___ to the beach every summer.",
+        "options": ["go", "went", "will go"],
+        "answer": "go"
+    },
+    {
+        "question": "We ___ the book yesterday.",
+        "options": ["read", "reads", "will read"],
+        "answer": "read"
+    },
+    {
+        "question": "You ___ very fast.",
+        "options": ["run", "ran", "will run"],
+        "answer": "run"
+    },
+    {
+        "question": "The train ___ at 6 PM.",
+        "options": ["arrives", "arrived", "will arrive"],
+        "answer": "arrives"
+    },
+    {
+        "question": "She ___ her mother every day.",
+        "options": ["calls", "called", "will call"],
+        "answer": "calls"
+    },
+    {
+        "question": "He ___ a new bicycle last week.",
+        "options": ["bought", "buys", "will buy"],
+        "answer": "bought"
+    },
+    {
+        "question": "They ___ in the park now.",
+        "options": ["are playing", "were playing", "will be playing"],
+        "answer": "are playing"
+    },
+    {
+        "question": "We ___ a new recipe yesterday.",
+        "options": ["tried", "try", "will try"],
+        "answer": "tried"
+    },
+    {
+        "question": "You ___ very well in the match.",
+        "options": ["played", "play", "will play"],
+        "answer": "played"
+    },
+    {
+        "question": "The sun ___ brightly.",
+        "options": ["shines", "shone", "will shine"],
+        "answer": "shines"
+    },
+    {
+        "question": "She ___ her homework now.",
+        "options": ["is doing", "was doing", "will be doing"],
+        "answer": "is doing"
+    },
+    {
+        "question": "He ___ a marathon last year.",
+        "options": ["ran", "runs", "will run"],
+        "answer": "ran"
+    },
+    {
+        "question": "They ___ the meeting tomorrow.",
+        "options": ["attend", "attended", "will attend"],
+        "answer": "will attend"
+    },
+    {
+        "question": "We ___ a new TV show.",
+        "options": ["watch", "watched", "will watch"],
+        "answer": "watch"
+    },
+    {
+        "question": "You ___ to the gym every day.",
+        "options": ["go", "went", "will go"],
+        "answer": "go"
+    },
+    {
+        "question": "The dog ___ at the stranger.",
+        "options": ["barks", "barked", "will bark"],
+        "answer": "barked"
+    },
+    {
+        "question": "She ___ a beautiful picture.",
+        "options": ["paints", "painted", "will paint"],
+        "answer": "painted"
+    },
+    {
+        "question": "He ___ the story very well.",
+        "options": ["tells", "told", "will tell"],
+        "answer": "told"
+    },
+    {
+        "question": "They ___ to the museum last weekend.",
+        "options": ["went", "go", "will go"],
+        "answer": "went"
+    },
+    {
+        "question": "We ___ the concert tickets yesterday.",
+        "options": ["bought", "buy", "will buy"],
+        "answer": "bought"
+    },
+    {
+        "question": "You ___ very late.",
+        "options": ["arrive", "arrived", "will arrive"],
+        "answer": "arrived"
+    },
+    {
+        "question": "The car ___ very fast.",
+        "options": ["goes", "went", "will go"],
+        "answer": "goes"
+    },
+    {
+        "question": "She ___ her favorite song.",
+        "options": ["sings", "sang", "will sing"],
+        "answer": "sang"
+    },
+    {
+        "question": "He ___ a big surprise for you.",
+        "options": ["has", "had", "will have"],
+        "answer": "has"
+    },
+    {
+        "question": "They ___ a new strategy.",
+        "options": ["plan", "planned", "will plan"],
+        "answer": "plan"
+    },
+    {
+        "question": "We ___ the football match.",
+        "options": ["watched", "watch", "will watch"],
+        "answer": "watched"
+    },
+    {
+        "question": "You ___ very early.",
+        "options": ["wake up", "woke up", "will wake up"],
+        "answer": "wake up"
+    },
+    {
+        "question": "The cat ___ on the roof.",
+        "options": ["sits", "sat", "will sit"],
+        "answer": "sits"
+    },
+    {
+        "question": "She ___ a new job last month.",
+        "options": ["got", "gets", "will get"],
+        "answer": "got"
+    },
+    {
+        "question": "He ___ the ball very far.",
+        "options": ["throws", "threw", "will throw"],
+        "answer": "threw"
+    },
+    {
+        "question": "They ___ to the market every week.",
+        "options": ["go", "went", "will go"],
+        "answer": "go"
+    },
+    {
+        "question": "We ___ the game now.",
+        "options": ["are playing", "were playing", "will be playing"],
+        "answer": "are playing"
+    },
+    {
+        "question": "You ___ a new friend yesterday.",
+        "options": ["met", "meet", "will meet"],
+        "answer": "met"
+    },
+    {
+        "question": "The teacher ___ the lesson well.",
+        "options": ["explains", "explained", "will explain"],
+        "answer": "explained"
+    },
+    {
+        "question": "She ___ a delicious dinner.",
+        "options": ["cooks", "cooked", "will cook"],
+        "answer": "cooked"
+    },
+    {
+        "question": "He ___ very hard for the exam.",
+        "options": ["studies", "studied", "will study"],
+        "answer": "studies"
+    },
+    {
+        "question": "They ___ to the mountains every winter.",
+        "options": ["go", "went", "will go"],
+        "answer": "go"
+    },
+    {
+        "question": "We ___ a new laptop last month.",
+        "options": ["bought", "buy", "will buy"],
+        "answer": "bought"
+    },
+    {
+        "question": "You ___ very fast in the race.",
+        "options": ["run", "ran", "will run"],
+        "answer": "ran"
+    },
+    {
         "question": "We ___ the presentation now.",
         "options": ["give", "gave", "will give"],
         "answer": "give"
