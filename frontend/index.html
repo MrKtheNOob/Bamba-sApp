@@ -4,36 +4,22 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Learn irregular verbs with ABN's app</title>
-        <style>
-            body {
-                display: flex;
-                text-align: center;
-                flex-direction: column;
-                background-color: rgb(208, 208, 245);
-                padding: 40px;
-                justify-content: center;
-            }
-            button {
-                border-radius: 10px;
-                height: 30px;
-                width: 100px;
-                background-color: rgb(99, 153, 200);
-            }
-           
-        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Learn irregular verbs</h1>
+        <h1>Learn Irregular Verbs</h1>
         <div>
             <!-- the phrase shoud show up in this h2  and loaded by the server at enpoint givequestion
     -->
             <h2 id="questionlabel">question</h2>
             <!-- the answers should also be loaded by the server  -->
-            <button class="answers" onclick="ev0()">answer1</button>
-            <button class="answers" onclick="ev1()">answer2</button>
-            <button class="answers" onclick="ev2()">answer3</button>
-            <br /><br />
-            <button onclick="getData()">Reset</button>
+             <div class="answers">
+                <button onclick="ev0()">answer1</button>
+                <button onclick="ev1()">answer2</button>
+                <button onclick="ev2()">answer3</button>
+            </div>
+            
+            <button class="reset" onclick="getData()">Reset</button>
             <br />
             <span id="score">score</span>
             <div id="evaluationdiv"></div>
