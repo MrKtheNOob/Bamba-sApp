@@ -16,11 +16,6 @@ type QuizItem struct {
 	Answer   string   `json:"answer"`
 }
 
-// type Feedback struct {
-// 	Answer     string `gorm:"not null"`
-// 	Suggestion string `gorm:"type:text"`
-// }
-
 func loadPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Page loaded for:%v", r.RemoteAddr)
 	http.ServeFile(w, r, "../frontend/index.html")
