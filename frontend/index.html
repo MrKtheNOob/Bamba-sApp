@@ -1,89 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Learn irregular verbs with ABN's app</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1>Learn Irregular Verbs</h1>
-        <div>
-            <!-- the phrase shoud show up in this h2  and loaded by the server at enpoint givequestion
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn irregular verbs with ABN's app</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #7c9eb6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /*Tu peux choisir la palette que tu veux sur https://colorhunt.co*/
+      }
+      h1 {
+        color: #0d212e;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: 50px;
+      }
+      #questionlabel {
+        margin: 30px;
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+        height: 55vh;
+        width: 50vw;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        text-align: center;
+      }
+      div > * {
+        margin: 15px;
+        height: fit-content;
+      }
+      button {
+        cursor: pointer;
+      }
+      .answers {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 40vw;
+      }
+
+      .answers > * {
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: 60px;
+        width: 160px;
+        font-size: large;
+        background-color: #dfd0b8;
+      }
+      .reset {
+        color: #565047;
+        border-radius: 8px;
+        background-color: #dfd0b8;
+        width: 55px;
+      }
+
+      #score {
+        color: #0d212e;
+        font-size: 20px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Learn irregular verbs</h1>
+    <div>
+      <!-- the phrase shoud show up in this h2  and loaded by the server at enpoint givequestion
     -->
-            <h2 id="questionlabel">question</h2>
-            <!-- the answers should also be loaded by the server  -->
-             <div class="answers">
-                <button onclick="ev0()">answer1</button>
-                <button onclick="ev1()">answer2</button>
-                <button onclick="ev2()">answer3</button>
-            </div>
-            
-            <button class="reset" onclick="getData()">Reset</button>
-            <br />
-            <span id="score">score</span>
-            <div id="evaluationdiv"></div>
-        </div>
-        <script>
-            const questionLabel = document.getElementById("questionlabel");
-            const options = document.getElementsByClassName("answers");
-            const evaluationdiv = document.getElementById("evaluationdiv");
-            let scorel = document.getElementById("score");
-            let score = 0;
-            let fdata;
-            function getData() {
-                fetch("/getquestion")
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log(data);
-                        questionLabel.textContent = data.question;
-                        options[0].textContent = data.options[0];
-                        options[1].textContent = data.options[1];
-                        options[2].textContent = data.options[2];
-                        scorel.textContent = `score:${score}` ;
-                        fdata = data;
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
-                    });
-            }
-            getData();
-            function ev0() {
-                if (options[0].textContent == fdata.answer) {
-                    evaluationdiv.textContenft = "right answer";
-                    getData();
-                    score++;
-                    scorel.textContent = `score:${score}`;
-                } else {
-                    evaluationdiv.textContent = "wrong answer";
-                    score--
-                    scorel.textContent = `score:${score}`;
-                }
-            }
-            function ev1() {
-                if (options[1].textContent == fdata.answer) {
-                    evaluationdiv.textContent = "right answer";
-                    getData();
-                    score++;
-                    scorel.textContent = `score:${score}`;
-                } else {
-                    evaluationdiv.textContent = "wrong answer";
-                    score--
-                    scorel.textContent = `score:${score}`;
-                }
-            }
-            function ev2() {
-                if (options[2].textContent == fdata.answer) {
-                    evaluationdiv.textContent = "right answer";
-                    getData();
-                    score++;
-                    scorel.textContent = `score:${score}`;
-                } else {
-                    evaluationdiv.textContent = "wrong answer";
-                    score--
-                    scorel.textContent = `score:${score}`;
-                }
-            }
-        </script>
-    </body>
+      <h2 id="questionlabel">question</h2>
+      <!-- the answers should also be loaded by the server  -->
+      <button class="answers" onclick="ev0()">answer1</button>
+      <button class="answers" onclick="ev1()">answer2</button>
+      <button class="answers" onclick="ev2()">answer3</button>
+      <br /><br />
+      <button onclick="getData()">Reset</button>
+      <br />
+      <span id="score">score</span>
+      <div id="evaluationdiv"></div>
+    </div>
+    <div>
+      <form action="/feedback" method="post">
+        <h2>Do you like the app ?</h2>
+        <label for="yes">Yes</label>
+        <input type="radio" id="yes" name="answer" value="yes" />
+
+        <label for="no">No</label>
+        <input type="radio" id="no" name="answer" value="no" />
+
+        <br />
+
+        <label for="suggestion"
+          >Please give me suggestions/svp donnez moi des suggestions:</label
+        ><br />
+        <textarea
+          id="suggestion"
+          name="suggestion"
+          rows="4"
+          cols="50"
+          style="resize: none"
+        ></textarea>
+
+        <br /><br />
+
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+    <script>
+      const questionLabel = document.getElementById("questionlabel");
+      const options = document.getElementsByClassName("answers");
+      const evaluationdiv = document.getElementById("evaluationdiv");
+      let scorel = document.getElementById("score");
+      let score = 0;
+      let fdata;
+      function getData() {
+        fetch("/getquestion")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            questionLabel.textContent = data.question;
+            options[0].textContent = data.options[0];
+            options[1].textContent = data.options[1];
+            options[2].textContent = data.options[2];
+            scorel.textContent = `score:${score}`;
+            fdata = data;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+      getData();
+      function ev0() {
+        if (options[0].textContent == fdata.answer) {
+          evaluationdiv.textContenft = "right answer";
+          getData();
+          score++;
+          scorel.textContent = `score:${score}`;
+        } else {
+          evaluationdiv.textContent = "wrong answer";
+          score--;
+          scorel.textContent = `score:${score}`;
+        }
+      }
+      function ev1() {
+        if (options[1].textContent == fdata.answer) {
+          evaluationdiv.textContent = "right answer";
+          getData();
+          score++;
+          scorel.textContent = `score:${score}`;
+        } else {
+          evaluationdiv.textContent = "wrong answer";
+          score--;
+          scorel.textContent = `score:${score}`;
+        }
+      }
+      function ev2() {
+        if (options[2].textContent == fdata.answer) {
+          evaluationdiv.textContent = "right answer";
+          getData();
+          score++;
+          scorel.textContent = `score:${score}`;
+        } else {
+          evaluationdiv.textContent = "wrong answer";
+          score--;
+          scorel.textContent = `score:${score}`;
+        }
+      }
+    </script>
+  </body>
 </html>

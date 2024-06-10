@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"math/rand"
 	"net/http"
@@ -17,15 +16,19 @@ type QuizItem struct {
 	Answer   string   `json:"answer"`
 }
 
+// type Feedback struct {
+// 	Answer     string `gorm:"not null"`
+// 	Suggestion string `gorm:"type:text"`
+// }
+
 func loadPage(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Page loaded")
+	fmt.Printf("Page loaded for:%v", r.RemoteAddr)
 	http.ServeFile(w, r, "../frontend/index.html")
 }
 func pickQuestion() QuizItem {
-	rand.Seed(time.Now().UnixNano())
-
+	rand.NewSource(time.Now().UnixNano())
 	// Read the JSON file
-	data, err := ioutil.ReadFile("quiz_data.json")
+	data, err := os.ReadFile("quiz_data.json")
 	if err != nil {
 		log.Fatalf("Failed to read JSON file: %v", err)
 	}
@@ -49,8 +52,8 @@ func pickQuestion() QuizItem {
 	return selectedQuizItem
 }
 func giveQuestion(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("Getting question for:%v", r.RemoteAddr)
 	selectedQuizItem := pickQuestion()
-
 	response, err := json.Marshal(selectedQuizItem)
 	if err != nil {
 		http.Error(w, "Failed to marshal JSON response", http.StatusInternalServerError)
@@ -63,16 +66,34 @@ func giveQuestion(w http.ResponseWriter, r *http.Request) {
 	// Write the JSON response
 	w.Write(response)
 }
-func main() {
+func handleFeedback(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	answer := r.Form.Get("answer")
+	suggestion := r.Form.Get("reason")
 
-	http.HandleFunc("/", loadPage)
-	http.HandleFunc("/getquestion", giveQuestion)
-	fmt.Println("Server listening on 192.168.1.20:8080")
+	if answer == "" {
+		http.Error(w, "Please select an option for the answer.", http.StatusBadRequest)
+	}
+
+	fmt.Printf("FEEDBACK:{answer:%vsuggestion:%v}", answer, suggestion)
+	//put in db
+	fmt.Fprintln(w, "Thank you so much 🙏!")
+}
+func main() {
+	http.HandleFunc("POST /feedback", handleFeedback)
+	http.HandleFunc("GET /", loadPage)
+	http.HandleFunc("GET/getquestion", giveQuestion)
+	http.HandleFunc("GET /ping", func(w http.ResponseWriter, r *http.Request) {})
+	fmt.Println("Server Started ...")
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
 	if err := http.ListenAndServe("0.0.0.0:"+port, nil); err != nil {
-		log.Panic("error:%s", err)
+		log.Printf("error:%s", err)
 	}
 }
