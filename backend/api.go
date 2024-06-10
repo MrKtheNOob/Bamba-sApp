@@ -79,7 +79,7 @@ func handleFeedback(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Please select an option for the answer.", http.StatusBadRequest)
 	}
 
-	fmt.Printf("FEEDBACK:{answer:%vsuggestion:%v}", answer, suggestion)
+	fmt.Println("FEEDBACK:{answer:", answer, "suggestion:", suggestion, "}")
 	//put in db
 	fmt.Fprintln(w, "Thank you so much 🙏!")
 }
