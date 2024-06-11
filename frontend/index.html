@@ -92,7 +92,7 @@
       <div id="evaluationdiv"></div>
     </div>
     <div>
-      <form action="/feedback" method="post">
+      <form id="suggestion-space" action="/feedback" method="post">
         <h2>Do you like the app ?</h2>
         <label for="yes">Yes</label>
         <input type="radio" id="yes" name="answer" value="yes" />
@@ -109,13 +109,15 @@
 
         <br /><br />
 
-        <input type="submit" value="Submit" />
+        <input onclick="onSubmit()" type="submit" value="Submit" />
       </form>
     </div>
     <script>
       const questionLabel = document.getElementById("questionlabel");
       const options = document.getElementsByClassName("answers");
       const evaluationdiv = document.getElementById("evaluationdiv");
+      const suggestionSpace = document.getElementById("suggestion-space");
+      const Http = new XMLHttpRequest();
       let scorel = document.getElementById("score");
       let score = 0;
       let fdata;
@@ -123,17 +125,15 @@
         fetch("/getquestion")
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
-            questionLabel.textContent = data.question;
-            options[0].textContent = data.options[0];
-            options[1].textContent = data.options[1];
-            options[2].textContent = data.options[2];
-            scorel.textContent = `score:${score}`;
-            fdata = data;
+            document.getElementById("questionLabel").textContent =
+              data.question;
+            // Assuming data contains an array of answers
+            for (let i = 0; i < data.answers.length; i++) {
+              document.getElementsByClassName("answers")[i].textContent =
+                data.answers[i];
+            }
           })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
+          .catch((error) => console.error("Error:", error));
       }
       getData();
       function ev0() {
@@ -171,6 +171,9 @@
           score--;
           scorel.textContent = `score:${score}`;
         }
+      }
+      function onSubmit() {
+        suggestionSpace.innerHTML = "<h2>Thank you so much 🙏!<h2>";
       }
     </script>
   </body>

@@ -17,7 +17,7 @@ type QuizItem struct {
 }
 
 func loadPage(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("Page loaded for:%v", r.RemoteAddr)
+	fmt.Printf("Page loaded for:%v\n", r.RemoteAddr)
 	http.ServeFile(w, r, "../frontend/index.html")
 }
 func pickQuestion() QuizItem {
@@ -47,7 +47,7 @@ func pickQuestion() QuizItem {
 	return selectedQuizItem
 }
 func giveQuestion(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("Getting question for:%v", r.RemoteAddr)
+	fmt.Printf("Getting question for:%v\n", r.RemoteAddr)
 	selectedQuizItem := pickQuestion()
 	response, err := json.Marshal(selectedQuizItem)
 	if err != nil {
@@ -61,6 +61,7 @@ func giveQuestion(w http.ResponseWriter, r *http.Request) {
 	// Write the JSON response
 	w.Write(response)
 }
+
 func handleFeedback(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
@@ -75,13 +76,13 @@ func handleFeedback(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Println("FEEDBACK:{answer:", answer, "suggestion:", suggestion, "}")
-	//put in db
-	fmt.Fprintln(w, "Thank you so much 🙏!")
+	//put in db in the future
+
 }
 func main() {
 	http.HandleFunc("POST /feedback", handleFeedback)
 	http.HandleFunc("GET /", loadPage)
-	http.HandleFunc("GET/getquestion", giveQuestion)
+	http.HandleFunc("GET /getquestion", giveQuestion)
 	http.HandleFunc("GET /ping", func(w http.ResponseWriter, r *http.Request) {})
 	fmt.Println("Server Started ...")
 	port := os.Getenv("PORT")
