@@ -34,17 +34,29 @@ func pickQuestion() QuizItem {
 	if err != nil {
 		log.Fatalf("Failed to unmarshal JSON data: %v", err)
 	}
-
-	// Select a random index
+	// Select a random index of the json array
 	randomIndex := rand.Intn(len(quizItems))
-
-	// Print the selected quiz item
 	selectedQuizItem := quizItems[randomIndex]
-	fmt.Printf("Question: %s\n", selectedQuizItem.Question)
-	for i, option := range selectedQuizItem.Options {
-		fmt.Printf("%d. %s\n", i+1, option)
+
+	return *randomizeOptions(&selectedQuizItem)
+}
+func randomizeOptions(selectedQuizItem *QuizItem) *QuizItem {
+	//Randomizes the answers so that they are not at the same index all the time
+	for {
+		var index1 = rand.Intn(3)
+		var index2 = rand.Intn(3)
+		var index3 = rand.Intn(3)
+		if index1 != index2 && index1 != index3 && index2 != index3 {
+			selectedQuizItem.Options[index1], selectedQuizItem.Options[index2] = selectedQuizItem.Options[index2], selectedQuizItem.Options[index1]
+			selectedQuizItem.Options[index3], selectedQuizItem.Options[index1] = selectedQuizItem.Options[index1], selectedQuizItem.Options[index3]
+			fmt.Printf("Question: %s\n", selectedQuizItem.Question)
+			for i, option := range selectedQuizItem.Options {
+				fmt.Printf("%d. %s\n", i+1, option)
+			}
+			return selectedQuizItem
+		}
 	}
-	return selectedQuizItem
+
 }
 func giveQuestion(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Getting question for:%v\n", r.RemoteAddr)
