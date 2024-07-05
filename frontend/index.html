@@ -16,16 +16,20 @@
             }
             button {
                 border-radius: 10px;
-                height: 30px;
+                height: auto;
+                min-height: 30px;
                 width: 100px;
                 background-color: rgb(99, 153, 200);
+            }
+            #score{
+                font-size: 1.2em;
             }
            
         </style>
     </head>
     <body>
         <h1>Learn irregular verbs</h1>
-        <h2>Changes/Ugrades Coming Soon</h2>
+        <p>Changes/Ugrades Coming Soon</p>
         <div>
             <!-- the phrase shoud show up in this h2  and loaded by the server at enpoint givequestion
     -->
@@ -38,15 +42,37 @@
             <button onclick="getData()">Reset</button>
             <br />
             <span id="score">score</span>
-            <div id="evaluationdiv"></div>
+            <div id="evaluationsdiv"><span id="evaluationspan"></span></div>
         </div>
+        <footer style="font-size:1.3em;">
+            <form action="/feedback" method="post" target="hidden_iframe" onsubmit="submitFeedback()">
+                <label for="yesanswer">
+                    Yes
+                    <input type="radio" name="answer" value="yes" required>
+                </label>
+                <label for="noanswer">
+                    No
+                    <input type="radio" name="answer" value="no" required>
+                </label>
+                <br>
+                <label for="reason">
+                    <textarea name="suggestion" placeholder="Enter your suggestion"></textarea>
+                </label>
+                <br>
+                <button id="submitbtn" type="submit">Submit Feedback</button>
+            </form>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+            <div id="response"></div>
+        </footer>
         <script>
             const questionLabel = document.getElementById("questionlabel");
             const options = document.getElementsByClassName("answers");
-            const evaluationdiv = document.getElementById("evaluationdiv");
+            const evaluationspan = document.getElementById("evaluationspan");
             let scorel = document.getElementById("score");
             let score = 0;
             let fdata;
+            let submitted = false;
+            var evaluationspanColor= evaluationspan.style.backgroundColor;
             function getData() {
                 fetch("/getquestion")
                     .then((response) => response.json())
@@ -66,40 +92,63 @@
             getData();
             function ev0() {
                 if (options[0].textContent == fdata.answer) {
-                    evaluationdiv.textContenft = "right answer";
+                    evaluationspan.textContenft = "right answer";
                     getData();
                     score++;
+                    evaluationEffect("green")
                     scorel.textContent = `score:${score}`;
                 } else {
-                    evaluationdiv.textContent = "wrong answer";
+                    evaluationspan.textContent = "wrong answer";
                     score--
+                    evaluationEffect("red")
                     scorel.textContent = `score:${score}`;
                 }
             }
             function ev1() {
                 if (options[1].textContent == fdata.answer) {
-                    evaluationdiv.textContent = "right answer";
+                    evaluationspan.textContent = "right answer";
                     getData();
                     score++;
+                    evaluationEffect("green")
                     scorel.textContent = `score:${score}`;
                 } else {
-                    evaluationdiv.textContent = "wrong answer";
+                    evaluationspan.textContent = "wrong answer";
                     score--
+                    evaluationEffect("red")
                     scorel.textContent = `score:${score}`;
                 }
             }
             function ev2() {
                 if (options[2].textContent == fdata.answer) {
-                    evaluationdiv.textContent = "right answer";
+                    evaluationspan.textContent = "right answer";
                     getData();
                     score++;
+                    evaluationEffect("green")
                     scorel.textContent = `score:${score}`;
                 } else {
-                    evaluationdiv.textContent = "wrong answer";
+                    evaluationspan.textContent = "wrong answer";
                     score--
+                    evaluationEffect("red")
                     scorel.textContent = `score:${score}`;
                 }
             }
+            function evaluationEffect(color){
+                evaluationspan.style.backgroundColor=color
+                setTimeout(function(){
+                    evaluationspan.style.backgroundColor=evaluationspanColor
+                },1000)
+            }
+            
+            function submitFeedback(){
+                submitted=!submitted
+                document.getElementById('hidden_iframe').onload = function() {
+                if (submitted) {
+                document.getElementById('response').innerText = "Thank you for your feedback 🙏";
+                submitted = false;
+                }
+            }
+            }
+            
         </script>
     </body>
 </html>
