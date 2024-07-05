@@ -81,13 +81,14 @@ func handleFeedback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	answer := r.Form.Get("answer")
-	suggestion := r.Form.Get("reason")
+	suggestion := r.Form.Get("suggestion")
 
 	if answer == "" {
 		http.Error(w, "Please select an option for the answer.", http.StatusBadRequest)
 	}
+	// I'm gonna have to refactor this to something more serious
 
-	fmt.Println("FEEDBACK:{answer:", answer, "suggestion:", suggestion, "}")
+	fmt.Println("FEEDBACK:{answer:", answer, "suggestion:", string(suggestion), "}")
 	//put in db in the future
 
 }
