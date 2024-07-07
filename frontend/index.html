@@ -20,6 +20,7 @@
                 min-height: 30px;
                 width: 100px;
                 background-color: rgb(99, 153, 200);
+                cursor: pointer;
             }
             #score{
                 font-size: 1.2em;
@@ -32,16 +33,18 @@
         <p>Changes/Ugrades Coming Soon</p>
         <div>
             <!-- the phrase shoud show up in this h2  and loaded by the server at enpoint givequestion
-    -->
+    -->     <span id="score">score</span>
             <h2 id="questionlabel">question</h2>
             <!-- the answers should also be loaded by the server  -->
             <button class="answers" onclick="ev0()">answer1</button>
             <button class="answers" onclick="ev1()">answer2</button>
             <button class="answers" onclick="ev2()">answer3</button>
             <br /><br />
-            <button onclick="getData()">Reset</button>
+            <button id="get-meaning" onclick="showMeaning()">Get french meaning</button>
             <br />
-            <span id="score">score</span>
+            <br>
+            <button id="next-btn" onclick="getData();hideMeaning()">Next Question</button>
+            
             <div id="evaluationsdiv"><span id="evaluationspan"></span></div>
         </div>
         <footer style="font-size:1.3em;">
@@ -68,6 +71,7 @@
             const questionLabel = document.getElementById("questionlabel");
             const options = document.getElementsByClassName("answers");
             const evaluationspan = document.getElementById("evaluationspan");
+            const meaningButton = document.getElementById("get-meaning");
             let scorel = document.getElementById("score");
             let score = 0;
             let fdata;
@@ -84,6 +88,7 @@
                         options[2].textContent = data.options[2];
                         scorel.textContent = `score:${score}` ;
                         fdata = data;
+                        
                     })
                     .catch((error) => {
                         console.error("Error:", error);
@@ -93,7 +98,6 @@
             function ev0() {
                 if (options[0].textContent == fdata.answer) {
                     evaluationspan.textContenft = "right answer";
-                    getData();
                     score++;
                     evaluationEffect("green")
                     scorel.textContent = `score:${score}`;
@@ -107,7 +111,6 @@
             function ev1() {
                 if (options[1].textContent == fdata.answer) {
                     evaluationspan.textContent = "right answer";
-                    getData();
                     score++;
                     evaluationEffect("green")
                     scorel.textContent = `score:${score}`;
@@ -121,7 +124,6 @@
             function ev2() {
                 if (options[2].textContent == fdata.answer) {
                     evaluationspan.textContent = "right answer";
-                    getData();
                     score++;
                     evaluationEffect("green")
                     scorel.textContent = `score:${score}`;
@@ -148,7 +150,12 @@
                 }
             }
             }
-            
+            function showMeaning(){
+                meaningButton.textContent=fdata.meaning
+            }
+            function hideMeaning(){
+                meaningButton.textContent="Get french meaning"
+            }
         </script>
     </body>
 </html>

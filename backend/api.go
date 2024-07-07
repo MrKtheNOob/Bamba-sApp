@@ -14,6 +14,7 @@ type QuizItem struct {
 	Question string   `json:"question"`
 	Options  []string `json:"options"`
 	Answer   string   `json:"answer"`
+	Meaning  string   `json:"meaning"`
 }
 
 func loadPage(w http.ResponseWriter, r *http.Request) {
@@ -53,6 +54,7 @@ func randomizeOptions(selectedQuizItem *QuizItem) *QuizItem {
 			for i, option := range selectedQuizItem.Options {
 				fmt.Printf("%d. %s\n", i+1, option)
 			}
+			fmt.Println(selectedQuizItem.Meaning)
 			return selectedQuizItem
 		}
 	}
@@ -74,7 +76,7 @@ func giveQuestion(w http.ResponseWriter, r *http.Request) {
 	w.Write(response)
 }
 
-func handleFeedback(w http.ResponseWriter, r *http.Request) {
+func handleFeedback(w http.ResponseWriter, r *http.Request, db *DatabaseManager) {
 	err := r.ParseForm()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -82,18 +84,32 @@ func handleFeedback(w http.ResponseWriter, r *http.Request) {
 	}
 	answer := r.Form.Get("answer")
 	suggestion := r.Form.Get("suggestion")
-
 	if answer == "" {
 		http.Error(w, "Please select an option for the answer.", http.StatusBadRequest)
 	}
 	// I'm gonna have to refactor this to something more serious
-
 	fmt.Println("FEEDBACK:{answer:", answer, "suggestion:", string(suggestion), "}")
-	//put in db in the future
-
+	if err = db.InsertFeedback(answer, suggestion); err != nil {
+		http.Error(w, "Database error", http.StatusInternalServerError)
+	}
+	w.WriteHeader(http.StatusOK)
+	fmt.Println("Feedback submitted successfully")
+	w.Write([]byte("Feedback submitted successfully"))
 }
 func main() {
-	http.HandleFunc("POST /feedback", handleFeedback)
+	dsn := os.Getenv("DB_URI")
+	if dsn == "" {
+		log.Fatal("db uri not found")
+	}
+	db, err := InitialiseDB(dsn)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Database connceted successfully !")
+
+	http.HandleFunc("POST /feedback", func(w http.ResponseWriter, r *http.Request) {
+		handleFeedback(w, r, db)
+	})
 	http.HandleFunc("GET /", loadPage)
 	http.HandleFunc("GET /getquestion", giveQuestion)
 	http.HandleFunc("GET /ping", func(w http.ResponseWriter, r *http.Request) {})
