@@ -13,6 +13,7 @@
                 background-color: rgb(208, 208, 245);
                 padding: 40px;
                 justify-content: center;
+                margin: 0;
             }
             button {
                 border-radius: 10px;
@@ -25,12 +26,30 @@
             #score{
                 font-size: 1.2em;
             }
-           
+            nav{
+                display: flex;
+                border: 2px solid black;
+                position: fixed; /* Sticks the div to the top */
+                height: 100px;
+                top: 0; /* Position at the very top */
+                left: 0; /* Position at the very left */
+                width: 100%; /* Full width */
+                z-index: 1000; /* Ensure it stays on top of other content */
+            }
+            nav *{
+                width: 100%;
+                border-radius: 0%;
+            }
         </style>
     </head>
     <body>
-        <h1>Learn irregular verbs</h1>
-        <p>Changes/Ugrades Coming Soon</p>
+        <nav>
+            <h1>Learn irregular verbs</h1>
+            <p>App made by a teenager</p>
+            <button id="Save-score-btn">Save Score</button>
+        </nav>
+    
+        <br><br><br><br>
         <div>
             <!-- the phrase shoud show up in this h2  and loaded by the server at enpoint givequestion
     -->     <span id="score">score</span>
