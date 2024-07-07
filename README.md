@@ -1,1 +1,1 @@
-App to help you learn irregular verbs
+Web app to help you learn irregular verbs and more soon
