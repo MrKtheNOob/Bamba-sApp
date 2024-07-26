@@ -1,180 +1,396 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Learn irregular verbs with ABN's app</title>
-        <style>
-            body {
-                display: flex;
-                text-align: center;
-                flex-direction: column;
-                background-color: rgb(208, 208, 245);
-                padding: 40px;
-                justify-content: center;
-                margin: 0;
-            }
-            button {
-                border-radius: 10px;
-                height: auto;
-                min-height: 30px;
-                width: 100px;
-                background-color: rgb(99, 153, 200);
-                cursor: pointer;
-            }
-            #score{
-                font-size: 1.2em;
-            }
-            nav{
-                display: flex;
-                border: 2px solid black;
-                position: fixed; /* Sticks the div to the top */
-                height: 100px;
-                top: 0; /* Position at the very top */
-                left: 0; /* Position at the very left */
-                width: 100%; /* Full width */
-                z-index: 1000; /* Ensure it stays on top of other content */
-            }
-            nav *{
-                width: 100%;
-                border-radius: 0%;
-            }
-        </style>
-    </head>
-    <body>
-        <nav>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn irregular verbs with ABN's app</title>
+    <style>
+        body {
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            background-color: rgb(208, 208, 245);
+            justify-content: center;
+
+        }
+
+        .register-container,
+        .login-container {
+            border: 1px solid black;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 10%;
+
+        }
+
+        .register-container *,
+        .login-container * {
+            font-size: 40px;
+        }
+
+        button {
+            border-radius: 10px;
+            height: auto;
+            min-height: 30px;
+            min-width: 100px;
+            background-color: rgb(99, 153, 200);
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: hsl(206, 52%, 50%)
+        }
+
+        #score {
+            font-size: 1.2em;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            border: 2px solid black;
+            position: absolute;
+            /* Sticks the div to the top */
+            height: 100px;
+            top: 0;
+            /* Position at the very top */
+            left: 0;
+            /* Position at the very left */
+            width: 100%;
+            /* Full width */
+            z-index: 1000;
+            /* Ensure it stays on top of other content */
+        }
+
+        nav button {
+            font-size: 30px;
+            border-bottom: 0px;
+        }
+
+        nav * {
+            width: 100%;
+            border-radius: 0%;
+        }
+
+        #loginpg-btn {
+            width: auto;
+        }
+
+        .btns {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .answers,
+        #get-meaning,
+        #next-btn {
+            font-size: 30px;
+        }
+
+        #questionlabel {
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <button><a href="/leaderboard" style="color: inherit;text-decoration: none;">Leaderboard</a></button>
+        <div>
             <h1>Learn irregular verbs</h1>
             <p>App made by a teenager</p>
-            <button id="Save-score-btn">Save Score</button>
-        </nav>
-    
-        <br><br><br><br>
-        <div>
-            <!-- the phrase shoud show up in this h2  and loaded by the server at enpoint givequestion
-    -->     <span id="score">score</span>
-            <h2 id="questionlabel">question</h2>
-            <!-- the answers should also be loaded by the server  -->
-            <button class="answers" onclick="ev0()">answer1</button>
+        </div>
+        <button id="Save-score-btn" onclick="openLogindiv()">Save Score</button>
+    </nav>
+
+    <br><br><br><br>
+    <div class="register-container" id="rc">
+        <form id="register-form">
+            <span>Create you account</span>
+            <br />
+            <label for="Name">
+                <input type="text" placeholder="Enter your name" required name="Name" id="register-Name" />
+            </label>
+            <br />
+            <label for="Password">
+                <input type="password" required placeholder="Enter your Password" name="Password"
+                    id="register-Password" />
+            </label>
+            <br />
+            <label for="CPassword">
+                <input type="password" placeholder="Confirm password" required name="cpassword"
+                    id="register-CPassword" />
+            </label>
+            <br />
+            <button type="submit" id="register-submit">Register</button>
+        </form>
+        <p>Already have an account ? <button id="loginpg-btn" onclick="openLogindiv()">login here</button></p>
+    </div>
+    <div class="login-container" id="lc">
+        <form id="login-form">
+            <span>Connect to your account</span>
+            <br />
+            <label for="Name">
+                <input type="text" placeholder="Enter your name" required id="login-Name" name="Name"
+                    style="width: 90%;" />
+            </label>
+            <br />
+            <label for="Password">
+                <input type="password" required placeholder="Enter your Password" id="login-Password" name="Password"
+                    style="width: 90%;" />
+            </label>
+            <br />
+            <label id="score-label" for="score" value="">
+                <input type="hidden" required id="score-input" name="score" value=0>
+            </label>
+            <button type="submit" id="login-btn">Login</button>
+        </form>
+
+        <p>Don't have an account ? <button id="registerpg-btn" onclick="openRegisterdiv()">Create an account
+                here</button></p>
+    </div>
+    <main>
+        <!-- the phrase shoud show up in this h2  and loaded by the server at enpoint givequestion-->
+        <br><br>
+        <span id="score">score</span>
+        <h2 id="questionlabel">question</h2>
+        <!-- the answers should also be loaded by the server  -->
+        <div class="btns">
+            <button class="answers" id="answer" onclick="ev0()">answer1</button>
             <button class="answers" onclick="ev1()">answer2</button>
             <button class="answers" onclick="ev2()">answer3</button>
-            <br /><br />
-            <button id="get-meaning" onclick="showMeaning()">Get french meaning</button>
-            <br />
-            <br>
-            <button id="next-btn" onclick="getData();hideMeaning()">Next Question</button>
-            
-            <div id="evaluationsdiv"><span id="evaluationspan"></span></div>
         </div>
-        <footer style="font-size:1.3em;">
-            <form action="/feedback" method="post" target="hidden_iframe" onsubmit="submitFeedback()">
-                <label for="yesanswer">
-                    Yes
-                    <input type="radio" name="answer" value="yes" required>
-                </label>
-                <label for="noanswer">
-                    No
-                    <input type="radio" name="answer" value="no" required>
-                </label>
-                <br>
-                <label for="suggestion">
-                    <textarea name="suggestion" value="reason" placeholder="Enter your suggestion"></textarea>
-                </label>
-                <br>
-                <button id="submitbtn" type="submit">Submit Feedback</button>
-            </form>
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-            <div id="response"></div>
-        </footer>
-        <script>
-            const questionLabel = document.getElementById("questionlabel");
-            const options = document.getElementsByClassName("answers");
-            const evaluationspan = document.getElementById("evaluationspan");
-            const meaningButton = document.getElementById("get-meaning");
-            let scorel = document.getElementById("score");
-            let score = 0;
-            let fdata;
-            let submitted = false;
-            var evaluationspanColor= evaluationspan.style.backgroundColor;
-            function getData() {
-                fetch("/getquestion")
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log(data);
-                        questionLabel.textContent = data.question;
-                        options[0].textContent = data.options[0];
-                        options[1].textContent = data.options[1];
-                        options[2].textContent = data.options[2];
-                        scorel.textContent = `score:${score}` ;
-                        fdata = data;
-                        
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
-                    });
+        <br /><br />
+        <button id="get-meaning" onclick="showMeaning()">Get french meaning</button>
+        <br />
+        <br>
+        <button id="next-btn" onclick="getData();hideMeaning();ChangeAnswerState()">Next Question</button>
+        <div id="evaluationsdiv"><span id="evaluationspan"></span></div>
+    </main>
+    <footer style="font-size:1.3em;">
+        <form id="feedback-form" action="/feedback" method="post" target="hidden_iframe" onsubmit="submitFeedback()">
+            <label for="yesanswer">
+                Yes
+                <input type="radio" name="answer" value="yes" required>
+            </label>
+            <label for="noanswer">
+                No
+                <input type="radio" name="answer" value="no" required>
+            </label>
+            <br>
+            <label for="suggestion">
+                <textarea name="suggestion" value="reason" placeholder="Enter your suggestion"></textarea>
+            </label>
+            <br>
+            <button id="submitbtn" type="submit">Submit Feedback</button>
+        </form>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        <div id="response"></div>
+
+    </footer>
+    <script>
+        var clicked = false;
+        const questionLabel = document.getElementById("questionlabel");
+        const options = document.querySelectorAll(".answers")
+        const evaluationspan = document.getElementById("evaluationspan");
+        const meaningButton = document.getElementById("get-meaning");
+        const registerContainer = document.getElementById("rc");
+        const loginContainer = document.getElementById("lc")
+        const form = document.getElementById("feedback-form")
+        let scorel = document.getElementById("score");
+        const evaluationspanColor = evaluationspan.backgroundColor
+        let score = 0;
+        let fdata;
+        let submitted = false;
+        registerContainer.style.display = "none";
+        loginContainer.style.display = "none";
+        function getData() {
+            fetch("/getquestion")
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    questionLabel.textContent = data.question;
+                    options[0].textContent = data.options[0];
+                    options[1].textContent = data.options[1];
+                    options[2].textContent = data.options[2];
+                    scorel.textContent = `score:${score}`;
+                    fdata = data;
+
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+        getData();
+        function ev0() {
+            options.forEach(button => button.disabled = true);
+            if (options[0].textContent == fdata.answer) {
+                evaluationspan.textContenft = "right answer";
+                score++;
+                evaluationEffect("green")
+                scorel.textContent = `score:${score}`;
+            } else {
+                evaluationspan.textContent = "wrong answer";
+                score--
+                evaluationEffect("red")
+                scorel.textContent = `score:${score}`;
             }
-            getData();
-            function ev0() {
-                if (options[0].textContent == fdata.answer) {
-                    evaluationspan.textContenft = "right answer";
-                    score++;
-                    evaluationEffect("green")
-                    scorel.textContent = `score:${score}`;
-                } else {
-                    evaluationspan.textContent = "wrong answer";
-                    score--
-                    evaluationEffect("red")
-                    scorel.textContent = `score:${score}`;
-                }
+        }
+        function ev1() {
+            options.forEach(button => button.disabled = true);
+            if (options[1].textContent == fdata.answer) {
+                evaluationspan.textContent = "right answer";
+                score++;
+                evaluationEffect("green")
+                scorel.textContent = `score:${score}`;
+            } else {
+                evaluationspan.textContent = "wrong answer";
+                score--
+                evaluationEffect("red")
+                scorel.textContent = `score:${score}`;
             }
-            function ev1() {
-                if (options[1].textContent == fdata.answer) {
-                    evaluationspan.textContent = "right answer";
-                    score++;
-                    evaluationEffect("green")
-                    scorel.textContent = `score:${score}`;
-                } else {
-                    evaluationspan.textContent = "wrong answer";
-                    score--
-                    evaluationEffect("red")
-                    scorel.textContent = `score:${score}`;
-                }
+        }
+        function ev2() {
+            options.forEach(button => button.disabled = true);
+            if (options[2].textContent == fdata.answer) {
+                evaluationspan.textContent = "right answer";
+                score++;
+                evaluationEffect("green")
+                scorel.textContent = `score:${score}`;
+            } else {
+                evaluationspan.textContent = "wrong answer";
+                score--
+                evaluationEffect("red")
+                scorel.textContent = `score:${score}`;
             }
-            function ev2() {
-                if (options[2].textContent == fdata.answer) {
-                    evaluationspan.textContent = "right answer";
-                    score++;
-                    evaluationEffect("green")
-                    scorel.textContent = `score:${score}`;
-                } else {
-                    evaluationspan.textContent = "wrong answer";
-                    score--
-                    evaluationEffect("red")
-                    scorel.textContent = `score:${score}`;
-                }
-            }
-            function evaluationEffect(color){
-                evaluationspan.style.backgroundColor=color
-                setTimeout(function(){
-                    evaluationspan.style.backgroundColor=evaluationspanColor
-                },1000)
-            }
-            
-            function submitFeedback(){
-                submitted=!submitted
-                document.getElementById('hidden_iframe').onload = function() {
+        }
+        function evaluationEffect(color) {
+            evaluationspan.style.backgroundColor = color
+            setTimeout(function () {
+                evaluationspan.style.backgroundColor = evaluationspanColor
+            }, 1000)
+        }
+        function ChangeAnswerState() {
+            options.forEach(button => button.disabled = false);
+        }
+        function submitFeedback() {
+            submitted = !submitted
+            document.getElementById('hidden_iframe').onload = function () {
                 if (submitted) {
-                document.getElementById('response').innerText = "Thank you for your feedback 🙏";
-                submitted = false;
+                    document.getElementById('response').innerText = "Thank you for your feedback 🙏";
+                    submitted = false;
                 }
             }
+        }
+        function showMeaning() {
+            meaningButton.textContent = fdata.meaning
+        }
+        function hideMeaning() {
+            meaningButton.textContent = "Get french meaning"
+        }
+        function openLogindiv() {
+            if (loginContainer.style.display === "none") {
+                registerContainer.style.display = "none"
+                loginContainer.style.display = "block";
+            } else {
+                loginContainer.style.display = "none";
             }
-            function showMeaning(){
-                meaningButton.textContent=fdata.meaning
+        }
+        function openRegisterdiv() {
+            if (registerContainer.style.display === "none") {
+                loginContainer.style.display = "none";
+                registerContainer.style.display = "block";
+            } else {
+                registerContainer.style.display = "none";
             }
-            function hideMeaning(){
-                meaningButton.textContent="Get french meaning"
+        }
+        function loginRequest() {
+            const formData = new URLSearchParams();
+            formData.append('Name', document.getElementById("login-Name").value);
+            formData.append('Password', document.getElementById("login-Password").value);
+            formData.append('score', document.getElementById("score-input").value);
+
+            // Send the POST request with URL-encoded form data
+            fetch("/login", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded' // Set the content type to URL-encoded form data
+                },
+                body: formData // Convert URLSearchParams to a URL-encoded string
+            })
+                .then(response => {
+                    return response.text().then(text => ({
+                        status: response.status,
+                        text: text
+                    }));
+                })
+                .then(({ status, text }) => {
+                    if (status === 200) {
+                        console.log("Login successful");
+                        openLogindiv()
+                        alert("Login successfull\nscore submited")
+                    } else {
+                        console.log("Status code is not 200 :(");
+                    }
+                    console.log('Response text:', text);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Error logging in , check your credentials")
+                });
+        }
+        document.getElementById("login-form").addEventListener('submit', function (event) {
+            event.preventDefault()
+            console.log("hello")
+            loginRequest()
+        })
+        function registerRequest() {
+            const formData = new URLSearchParams();
+            formData.append('Name', document.getElementById("register-Name").value);
+            formData.append('Password', document.getElementById("register-Password").value);
+            formData.append('CPassword', document.getElementById("register-CPassword").value);
+
+            fetch("/register", {
+                method: "POST",
+                body: formData
+            }).then(response => {
+                return response.text().then(text => ({
+                    status: response.status,
+                    text: text
+                }));
+            }).then(({ status, text }) => {
+                if (status === 200) {
+                    console.log("register successful");
+                    alert("Register successfull")
+                    openRegisterdiv()
+                } else {
+                    console.log("Status code is not 200 :(");
+                }
+                console.log('Response text:', text);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        document.getElementById("register-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            if (document.getElementById("register-Password").value === document.getElementById("register-CPassword").value) {
+                console.log("form valid");
+                registerRequest();
+            } else {
+                alert("Error: Password and Confirm Password should be matched");
             }
-        </script>
-    </body>
+        });
+        function continuouslyUpdateInputValue() {
+            setInterval(() => {
+                console.log(document.getElementById('score-input').value)
+                document.getElementById('score-input').value = Number(score)
+            }, 100); // Update every 100 milliseconds
+        }
+        continuouslyUpdateInputValue();
+    </script>
+</body>
+
 </html>

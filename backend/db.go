@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql"
 
+	"fmt"
+
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -28,29 +30,62 @@ func InitialiseDB(dsn string) (*DatabaseManager, error) {
 	if err := db.Ping(); err != nil {
 		return nil, err
 	}
+	fmt.Println("Database connceted successfully !")
 	return &DatabaseManager{db}, nil
 }
 
+// Ping the database
 func (*DatabaseManager) PingDB(db *DatabaseManager) error {
 	return db.Ping()
 }
+
+// InserUser registers a new user into the db
 func (db *DatabaseManager) InsertUser(username string, password string) error {
+	user, _ := db.GetUserByUsernameAndPassword(username, password)
+	if user == nil {
+		return ErrUserAlreadyExists
+	}
 	query := "INSERT INTO users (username,password,score) VALUES (?, ?, ?)"
-	_, err := db.Exec(query, username, password)
+	_, err := db.Exec(query, username, password, 0)
 	return err
 }
 
+// Update user's highest score
+func (*DatabaseManager) UpdateUserScore(db *DatabaseManager, user *User, score int) error {
+	query := "SELECT score FROM users WHERE username = ? AND password = ?;"
+	var highestScore int
+	err := db.QueryRow(query, user.username, user.password).Scan(&highestScore)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil
+		}
+		return err
+	}
+
+	if score <= highestScore {
+		return nil
+	}
+
+	query = "UPDATE users SET score = ? WHERE username = ? AND password = ?"
+	_, err = db.Exec(query, score, user.username, user.password)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Update made successfully")
+	return nil
+}
+
 // GetUserByUsername retrieves a user from the database by username
-func (db *DatabaseManager) GetUserByUsername(username string) (*User, error) {
-	query := "SELECT username, password, score FROM users WHERE username = ?"
-	row := db.QueryRow(query, username)
+func (db *DatabaseManager) GetUserByUsernameAndPassword(username string, password string) (*User, error) {
+	query := "SELECT username, password, score FROM users WHERE username = ? AND password= ?"
+	row := db.QueryRow(query, username, password)
 
 	var user User
 	err := row.Scan(&user.username, &user.password, &user.score)
 	if err != nil {
 		return nil, err
 	}
-
 	return &user, nil
 }
 
