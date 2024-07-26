@@ -93,14 +93,16 @@
             font-size: 30px;
 
         }
-        
+        #something{
+            font-size: 0.65em;
+        }
     </style>
 </head>
 
 <body>
     <nav>
-        <button ><a href="/leaderboard" style="width: 100%;color: inherit;text-decoration: none;">Leaderboard</a></button>
-        <div>
+        <button id="leaderboard-btn">Leaderboard</button>
+        <div id="something">
             <h1>Learn irregular verbs</h1>
             <p>App made by a teenager</p>
         </div>
@@ -391,6 +393,9 @@
             }, 100); // Update every 100 milliseconds
         }
         continuouslyUpdateInputValue();
+        document.getElementById("leaderboard-btn").addEventListener("click",function (){
+            window.location.href="/leaderboard"
+        })
     </script>
 </body>
 

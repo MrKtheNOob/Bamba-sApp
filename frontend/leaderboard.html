@@ -58,10 +58,7 @@
       border: 1px solid black;
     }
 
-    a {
-      font-size: 100%;
-      cursor: pointer;
-    }
+    
 
     #c:hover {
       background-color: hsl(206, 52%, 50%)
@@ -79,7 +76,7 @@
       <p>App made by a teenager</p>
     </div>
     <div id="c">
-      <a href="/" style="color: inherit;text-decoration: none;">Go to the main page</a>
+      Go to the main page
     </div>
   </nav>
   <main>
@@ -88,5 +85,10 @@
     <p>This will be a board ranking people by their highest score in the game</p>
   </main>
 </body>
+<script>
+  document.getElementById("c").addEventListener("click",function (){
+    window.location.href="/"
+  })
+</script>
 
 </html>
