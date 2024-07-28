@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -10,6 +9,10 @@ import (
 
 type DatabaseManager struct {
 	*sql.DB
+}
+type PlayerData struct {
+	Username string `json:"username"`
+	Score    int    `json:"score"`
 }
 type User struct {
 	username string
@@ -42,7 +45,7 @@ func (*DatabaseManager) PingDB(db *DatabaseManager) error {
 // InserUser registers a new user into the db
 func (db *DatabaseManager) InsertUser(username string, password string) error {
 	user, _ := db.GetUserByUsernameAndPassword(username, password)
-	if user == nil {
+	if user != nil {
 		return ErrUserAlreadyExists
 	}
 	query := "INSERT INTO users (username,password,score) VALUES (?, ?, ?)"
@@ -106,8 +109,24 @@ func (db *DatabaseManager) GetAllUsers() ([]User, error) {
 		}
 		users = append(users, user)
 	}
-
 	return users, rows.Err()
+}
+func (db *DatabaseManager) GetLeaderboardData() ([]PlayerData, error) {
+	rows, err := db.Query("SELECT username, score FROM users ORDER BY score DESC")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var leaderboard []PlayerData
+	for rows.Next() {
+		var player PlayerData
+		if err := rows.Scan(&player.Username, &player.Score); err != nil {
+			return nil, err
+		}
+		leaderboard = append(leaderboard, player)
+	}
+	return leaderboard, nil
 }
 func (db *DatabaseManager) InsertFeedback(likes string, suggestion string) error {
 	query := "INSERT INTO feedback (likes, suggestion) VALUES (?, ?)"

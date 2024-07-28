@@ -2,93 +2,157 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leaderboard</title>
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      justify-content: center;
-      background-color: rgb(208, 208, 245);
-    }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Leaderboard</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			justify-content: center;
+			background-color: rgb(208, 208, 245);
+		}
 
-    #label {
-      font-size: 100px;
-    }
+		#label {
+			font-size: 3.5em;
+		}
 
-    p {
-      font-size: large;
-    }
+		p {
+			font-size: large;
+		}
 
-    nav {
-      display: flex;
-      border: 2px solid black;
-      position: absolute;
-      height: 100px;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
+		nav {
+			display: flex;
+			border: 2px solid black;
+			position: absolute;
+			height: 100px;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 1000;
+		}
 
-    nav * {
-      width: 100%;
-      border-radius: 0%;
-      font-size: 100%;
-    }
+		nav * {
+			width: 100%;
+			border-radius: 0%;
+			font-size: 100%;
+		}
 
-    main {
-      margin-top: 100px;
-    }
+		main {
+			margin-top: 100px;
+		}
 
-    button {
-      background-color: rgb(99, 153, 200);
-      border-bottom: 0px;
-      cursor: pointer;
-      font-size: 100%;
-    }
+		button {
+			background-color: rgb(99, 153, 200);
+			border-bottom: 0px;
+			cursor: pointer;
+			font-size: 100%;
+		}
 
-    #c {
-      background-color: rgb(99, 153, 200);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border: 1px solid black;
-    }
+		#c {
+			background-color: rgb(99, 153, 200);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			border: 1px solid black;
+		}
 
-    
 
-    #c:hover {
-      background-color: hsl(206, 52%, 50%)
-    }
-    #label{
-      font-size: 3.5em;
-    }
-  </style>
+
+		#c:hover {
+			background-color: hsl(206, 52%, 50%)
+		}
+
+		table {
+			
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding-top: 3em;
+			margin:auto;
+			font-size: 1em;
+		}
+
+		table th{	
+			width: 70%;
+			font-size: 100%;
+		}
+		
+
+		thead * {
+			color: white;
+			font-weight: bold;
+			background-color: rgb(70, 130, 180);
+		}
+
+		td {
+			padding: 12px 15px;
+			border-right: 1px solid black;
+		}
+
+		tbody tr {
+			border-bottom: 1px solid black;
+		}
+	</style>
 </head>
 
 <body>
-  <nav>
-    <div>
-      <h1>Learn irregular verbs</h1>
-      <p>App made by a teenager</p>
-    </div>
-    <div id="c">
-      Go to the main page
-    </div>
-  </nav>
-  <main>
-    <h1 id="label">Working on it</H1>
-    <br>
-    <p>This will be a board ranking people by their highest score in the game</p>
-  </main>
+	<nav>
+		<div>
+			<h1>Learn irregular verbs</h1>
+			<p>App made by a teenager</p>
+		</div>
+		<div id="c">
+			Go to the main page
+		</div>
+	</nav>
+
+	<main>
+		<h1 id="label">Leaderboard</h1>
+		<table id="leaderboard">
+			<thead>
+				<tr>
+					<th style="width: 90px;">Rank</th>
+					<th>Username</th>
+					<th>Score</th>
+				</tr>
+			</thead>
+			<tbody id="tbody">
+
+			</tbody>
+		</table>
+		<p>Don't forget to roast the app in the main page</p>
+	</main>
+
 </body>
 <script>
-  document.getElementById("c").addEventListener("click",function (){
-    window.location.href="/"
-  })
+	document.getElementById("c").addEventListener("click", function () {
+		window.location.href = "/"
+	})
+	document.addEventListener("DOMContentLoaded", function () {
+		fetch('/getleaderboarddata')
+			.then(response => response.json())
+			.then(data => {
+				const tbody = document.getElementById('tbody');
+				data.forEach((player, index) => {
+					const row = document.createElement('tr');
+					const rankCell = document.createElement('td')
+					const nameCell = document.createElement('td');
+					const scoreCell = document.createElement('td');
+
+					rankCell.textContent = index + 1;
+					nameCell.textContent = player.username;
+					scoreCell.textContent = player.score;
+
+					tbody.appendChild(row);
+					row.appendChild(rankCell);
+					row.appendChild(nameCell);
+					row.appendChild(scoreCell);
+
+				});
+			})
+			.catch(error => console.error('Error fetching leaderboard data:', error));
+	});
 </script>
 
 </html>

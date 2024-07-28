@@ -30,7 +30,6 @@ func leaderboardPage(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "../frontend/leaderboard.html")
 }
 func login(w http.ResponseWriter, r *http.Request, db *DatabaseManager) {
-
 	err := r.ParseForm()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -51,7 +50,7 @@ func login(w http.ResponseWriter, r *http.Request, db *DatabaseManager) {
 
 	user, err := db.GetUserByUsernameAndPassword(username, password)
 	if err != nil {
-		fmt.Printf("%v tried to login but failed finding themselves in the DB\n", r.RemoteAddr)
+		fmt.Printf("%v tried to login but failed finding himself in the DB\n", r.RemoteAddr)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
 	}
@@ -61,6 +60,7 @@ func login(w http.ResponseWriter, r *http.Request, db *DatabaseManager) {
 		return
 	}
 
+	// Update user score
 	err = db.UpdateUserScore(db, user, intscore)
 	if err != nil {
 		fmt.Printf("Error updating score for user %v: %v\n", r.RemoteAddr, err)
@@ -69,7 +69,7 @@ func login(w http.ResponseWriter, r *http.Request, db *DatabaseManager) {
 	}
 
 	// Log success and respond
-	log.Printf("User %v logged in successfully and updated their score\n", r.RemoteAddr)
+	fmt.Printf("User %v logged in successfully and updated their score\n", r.RemoteAddr)
 	w.WriteHeader(http.StatusOK) // Ensure only one WriteHeader call
 	w.Write([]byte("Login successful"))
 }
@@ -92,10 +92,24 @@ func register(w http.ResponseWriter, r *http.Request, db *DatabaseManager) {
 		}
 		log.Println(err.Error())
 		http.Error(w, "Database Error", http.StatusInternalServerError)
-		log.Printf("Database Error for register")
+		log.Println("Database Error for register")
 		return
 	}
-	fmt.Printf("New user of name %v registered\n", username)
+	log.Printf("New user of name %v registered\n", username)
+}
+func GiveLeaderboardData(w http.ResponseWriter, r *http.Request, db *DatabaseManager) {
+	leaderboardData, err := db.GetLeaderboardData()
+	if err != nil {
+		http.Error(w, "Database error fetching leaderboard data;error is:"+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	response, err := json.Marshal(leaderboardData)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(response)
 }
 func pickQuestion() QuizItem {
 	rand.NewSource(time.Now().UnixNano())
@@ -192,6 +206,9 @@ func main() {
 	})
 	http.HandleFunc("GET /leaderboard", leaderboardPage)
 	http.HandleFunc("GET /getquestion", giveQuestion)
+	http.HandleFunc("GET /getleaderboarddata", func(w http.ResponseWriter, r *http.Request) {
+		GiveLeaderboardData(w, r, db)
+	})
 	http.HandleFunc("GET /ping", func(w http.ResponseWriter, r *http.Request) {})
 	fmt.Println("Server Started ...")
 	port := os.Getenv("PORT")
