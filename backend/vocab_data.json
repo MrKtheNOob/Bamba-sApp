@@ -40,5 +40,251 @@
         "options": ["solution", "solutions", "solve"],
         "answer": "solution",
         "meaning": "solution"
+    },
+    {
+        "question": "He ___ to the gym every morning.",
+        "options": ["goes", "going", "go"],
+        "answer": "goes",
+        "meaning": "aller"
+    },
+    {
+        "question": "The movie's ___ was impressive.",
+        "options": ["director", "directors", "direct"],
+        "answer": "director",
+        "meaning": "réalisateur"
+    },
+    {
+        "question": "She will ___ her presentation tomorrow.",
+        "options": ["deliver", "delivers", "delivered"],
+        "answer": "deliver",
+        "meaning": "présenter"
+    },
+    {
+        "question": "The cake was ___ with fresh strawberries.",
+        "options": ["decorated", "decorate", "decorates"],
+        "answer": "decorated",
+        "meaning": "décorer"
+    },
+    {
+        "question": "They ___ the project by the end of the month.",
+        "options": ["complete", "completed", "completes"],
+        "answer": "complete",
+        "meaning": "compléter"
+    },
+    {
+        "question": "Her ___ to the challenge was very quick.",
+        "options": ["response", "responses", "respond"],
+        "answer": "response",
+        "meaning": "réponse"
+    },
+    {
+        "question": "He ___ a lot of time reading books.",
+        "options": ["spends", "spend", "spending"],
+        "answer": "spends",
+        "meaning": "passer"
+    },
+    {
+        "question": "The ___ of the novel was quite moving.",
+        "options": ["plot", "plots", "plotting"],
+        "answer": "plot",
+        "meaning": "intrigue"
+    },
+    {
+        "question": "She always ___ her work carefully.",
+        "options": ["reviews", "review", "reviewing"],
+        "answer": "reviews",
+        "meaning": "réviser"
+    },
+    {
+        "question": "They ___ a new policy last week.",
+        "options": ["implemented", "implement", "implements"],
+        "answer": "implemented",
+        "meaning": "mettre en œuvre"
+    },
+    {
+        "question": "He felt a sense of ___ after the meeting.",
+        "options": ["accomplishment", "accomplish", "accomplishes"],
+        "answer": "accomplishment",
+        "meaning": "accomplissement"
+    },
+    {
+        "question": "She ___ the results of the experiment carefully.",
+        "options": ["analyzes", "analyze", "analyzed"],
+        "answer": "analyzes",
+        "meaning": "analyser"
+    },
+    {
+        "question": "The ___ of the artist's work was praised.",
+        "options": ["technique", "techniques", "technics"],
+        "answer": "technique",
+        "meaning": "technique"
+    },
+    {
+        "question": "He ___ a great deal of knowledge about the subject.",
+        "options": ["possesses", "possess", "possessing"],
+        "answer": "possesses",
+        "meaning": "posséder"
+    },
+    {
+        "question": "The team ___ a new strategy for the project.",
+        "options": ["developed", "develop", "develops"],
+        "answer": "developed",
+        "meaning": "développer"
+    },
+    {
+        "question": "She ___ a wonderful speech at the ceremony.",
+        "options": ["delivered", "deliver", "delivers"],
+        "answer": "delivered",
+        "meaning": "prononcer"
+    },
+    {
+        "question": "The book ___ a lot of useful information.",
+        "options": ["contains", "contain", "contained"],
+        "answer": "contains",
+        "meaning": "contenir"
+    },
+    {
+        "question": "He ___ to be a successful entrepreneur.",
+        "options": ["strives", "strive", "striving"],
+        "answer": "strives",
+        "meaning": "s'efforcer"
+    },
+    {
+        "question": "The new policy aims to ___ employee satisfaction.",
+        "options": ["increase", "increases", "increasing"],
+        "answer": "increase",
+        "meaning": "augmenter"
+    },
+    {
+        "question": "She ___ the team to work harder.",
+        "options": ["encouraged", "encourage", "encourages"],
+        "answer": "encouraged",
+        "meaning": "encourager"
+    },
+    {
+        "question": "The scientist ___ a new theory last year.",
+        "options": ["proposed", "propose", "proposes"],
+        "answer": "proposed",
+        "meaning": "proposer"
+    },
+    {
+        "question": "He ___ a lot of questions during the presentation.",
+        "options": ["asked", "ask", "asks"],
+        "answer": "asked",
+        "meaning": "demander"
+    },
+    {
+        "question": "The ___ of the building is very modern.",
+        "options": ["design", "designs", "designer"],
+        "answer": "design",
+        "meaning": "design"
+    },
+    {
+        "question": "She ___ an important decision yesterday.",
+        "options": ["made", "make", "makes"],
+        "answer": "made",
+        "meaning": "prendre"
+    },
+    {
+        "question": "The company ___ to improve its customer service.",
+        "options": ["aims", "aim", "aiming"],
+        "answer": "aims",
+        "meaning": "viser"
+    },
+    {
+        "question": "He ___ a new business venture.",
+        "options": ["launched", "launch", "launches"],
+        "answer": "launched",
+        "meaning": "lancer"
+    },
+    {
+        "question": "The ___ of the conference was very engaging.",
+        "options": ["speaker", "speakers", "speak"],
+        "answer": "speaker",
+        "meaning": "conférencier"
+    },
+    {
+        "question": "She ___ a detailed report on the project.",
+        "options": ["prepared", "prepares", "prepare"],
+        "answer": "prepared",
+        "meaning": "préparer"
+    },
+    {
+        "question": "The ___ of the film was very dramatic.",
+        "options": ["ending", "endings", "end"],
+        "answer": "ending",
+        "meaning": "fin"
+    },
+    {
+        "question": "He ___ his plans to the team yesterday.",
+        "options": ["outlined", "outlines", "outline"],
+        "answer": "outlined",
+        "meaning": "exposer"
+    },
+    {
+        "question": "The ___ of the problem is still under investigation.",
+        "options": ["cause", "causes", "causing"],
+        "answer": "cause",
+        "meaning": "cause"
+    },
+    {
+        "question": "She ___ the presentation to the audience.",
+        "options": ["explained", "explains", "explain"],
+        "answer": "explained",
+        "meaning": "expliquer"
+    },
+    {
+        "question": "The ___ of the play was quite moving.",
+        "options": ["performance", "performances", "perform"],
+        "answer": "performance",
+        "meaning": "performance"
+    },
+    {
+        "question": "He ___ an interesting article last week.",
+        "options": ["wrote", "writes", "write"],
+        "answer": "wrote",
+        "meaning": "écrire"
+    },
+    {
+        "question": "The ___ of the project was very successful.",
+        "options": ["implementation", "implement", "implemented"],
+        "answer": "implementation",
+        "meaning": "mise en œuvre"
+    },
+    {
+        "question": "She ___ the details of the event.",
+        "options": ["discussed", "discuss", "discusses"],
+        "answer": "discussed",
+        "meaning": "discuter"
+    },
+    {
+        "question": "The ___ of the experiment were analyzed.",
+        "options": ["results", "result", "resulting"],
+        "answer": "results",
+        "meaning": "résultats"
+    },
+    {
+        "question": "He ___ a major breakthrough in his research.",
+        "options": ["achieved", "achieve", "achieves"],
+        "answer": "achieved",
+        "meaning": "réaliser"
+    },
+    {
+        "question": "The ___ of the solution was discussed in detail.",
+        "options": ["implementation", "implement", "implementing"],
+        "answer": "implementation",
+        "meaning": "mise en œuvre"
+    },
+    {
+        "question": "She ___ a new technique in her experiment.",
+        "options": ["introduced", "introduces", "introduce"],
+        "answer": "introduced",
+        "meaning": "introduire"
+    },
+    {
+        "question": "The ___ of the new system was smooth.",
+        "options": ["integration", "integrations", "integrate"],
+        "answer": "integration",
+        "meaning": "intégration"
     }
 ]
