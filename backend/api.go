@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"html/template"
 	"log"
 	"math/rand"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 	"time"
 )
@@ -23,11 +25,33 @@ var ErrUserAlreadyExists = errors.New("user already exists")
 
 func loadPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Page loaded for:%v\n", r.RemoteAddr)
-	http.ServeFile(w, r, "../frontend/index.html")
+	tmpl := template.Must(template.ParseFiles(filepath.Join("..", "frontend", "index.html")))
+
+	// Render the index.html template
+	if err := tmpl.Execute(w, nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+func vocabPage(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("Vocab Page loaded for:%v\n", r.RemoteAddr)
+	tmpl := template.Must(template.ParseFiles(filepath.Join("..", "frontend", "vocabulary.html")))
+
+	// Render the index.html template
+	if err := tmpl.Execute(w, nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 func leaderboardPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("leaderboard page loaded")
-	http.ServeFile(w, r, "../frontend/leaderboard.html")
+	tmpl := template.Must(template.ParseFiles(filepath.Join("..", "frontend", "leaderboard.html")))
+
+	// Render the index.html template
+	if err := tmpl.Execute(w, nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 func login(w http.ResponseWriter, r *http.Request, db *DatabaseManager) {
 	err := r.ParseForm()
@@ -111,14 +135,24 @@ func GiveLeaderboardData(w http.ResponseWriter, r *http.Request, db *DatabaseMan
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(response)
 }
-func pickQuestion() QuizItem {
+func pickQuestion(subject string) QuizItem {
 	rand.NewSource(time.Now().UnixNano())
+	var data []byte
+	var err error
 	// Read the JSON file
-	data, err := os.ReadFile("quiz_data.json")
-	if err != nil {
-		log.Fatalf("Failed to read JSON file: %v", err)
-	}
+	switch subject {
+	case "IV":
+		data, err = os.ReadFile("quiz_data.json")
+		if err != nil {
+			log.Fatalf("Failed to read JSON file: %v", err)
+		}
 
+	case "vocab":
+		data, err = os.ReadFile("vocab_data.json")
+		if err != nil {
+			log.Fatalf("Failed to read JSON file: %v", err)
+		}
+	}
 	// Unmarshal the JSON data into a slice of QuizItem
 	var quizItems []QuizItem
 	err = json.Unmarshal(data, &quizItems)
@@ -149,9 +183,10 @@ func randomizeOptions(selectedQuizItem *QuizItem) *QuizItem {
 		}
 	}
 }
-func giveQuestion(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("Getting question for:%v\n", r.RemoteAddr)
-	selectedQuizItem := pickQuestion()
+func giveQuestion(w http.ResponseWriter, r *http.Request, subject string) {
+	fmt.Printf("Getting %s question for:%v\n", subject, r.RemoteAddr)
+
+	selectedQuizItem := pickQuestion(subject)
 	response, err := json.Marshal(selectedQuizItem)
 	if err != nil {
 		http.Error(w, "Failed to marshal JSON response", http.StatusInternalServerError)
@@ -185,6 +220,9 @@ func handleFeedback(w http.ResponseWriter, r *http.Request, db *DatabaseManager)
 	w.Write([]byte("Feedback submitted successfully"))
 }
 func main() {
+	fs := http.FileServer(http.Dir("../frontend"))
+	http.Handle("GET /static/", http.StripPrefix("/static/", fs))
+
 	dsn := os.Getenv("DB_URI")
 	if dsn == "" {
 		log.Fatal("db uri not found")
@@ -195,6 +233,7 @@ func main() {
 	}
 	//the routes
 	http.HandleFunc("GET /", loadPage)
+	http.HandleFunc("GET /vocab", vocabPage)
 	http.HandleFunc("POST /login", func(w http.ResponseWriter, r *http.Request) {
 		login(w, r, db)
 	})
@@ -205,7 +244,12 @@ func main() {
 		handleFeedback(w, r, db)
 	})
 	http.HandleFunc("GET /leaderboard", leaderboardPage)
-	http.HandleFunc("GET /getquestion", giveQuestion)
+	http.HandleFunc("GET /getivquestion", func(w http.ResponseWriter, r *http.Request) {
+		giveQuestion(w, r, "IV")
+	})
+	http.HandleFunc("GET /getvocabquestion", func(w http.ResponseWriter, r *http.Request) {
+		giveQuestion(w, r, "vocab")
+	})
 	http.HandleFunc("GET /getleaderboarddata", func(w http.ResponseWriter, r *http.Request) {
 		GiveLeaderboardData(w, r, db)
 	})

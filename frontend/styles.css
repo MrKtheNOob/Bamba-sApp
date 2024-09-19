@@ -1,0 +1,96 @@
+body {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    background-color: rgb(208, 208, 365);
+    justify-content: center;
+
+}
+
+.register-container,
+.login-container {
+    border: 1px solid black;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 10%;
+
+}
+
+.register-container *,
+.login-container * {
+    font-size: 40px;
+}
+
+button {
+    border-radius: 10px;
+    height: auto;
+    min-height: 30px;
+    min-width: 100px;
+    background-color: rgb(99, 153, 200);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: hsl(206, 52%, 50%)
+}
+
+#score {
+    font-size: 1.2em;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid black;
+    position: absolute;
+    /* Sticks the div to the top */
+    height: 100px;
+    top: 0;
+    /* Position at the very top */
+    left: 0;
+    /* Position at the very left */
+    width: 100%;
+    /* Full width */
+    z-index: 1000;
+    /* Ensure it stays on top of other content */
+}
+
+nav button {
+    font-size: 100%;
+    border-bottom: 0px;
+}
+
+nav * {
+    width: 100%;
+    border-radius: 0%;
+}
+
+#loginpg-btn {
+    width: auto;
+}
+
+.btns {
+    display: flex;
+    gap: 20px;
+    
+    
+}
+.answers{
+    white-space:normal;
+    font-size: 20px;
+    height: auto;
+    overflow: visible;
+}
+
+#get-meaning,
+#next-btn {
+    font-size: 30px;
+}
+
+#questionlabel {
+    font-size: 30px;
+
+}
+#something{
+    font-size: 0.65em;
+}

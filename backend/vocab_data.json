@@ -1,0 +1,44 @@
+[
+    {
+        "question": "She always ___ a book before going to bed.",
+        "options": ["reads", "reads", "reading"],
+        "answer": "reads",
+        "meaning": "lire"
+    },
+    {
+        "question": "The ___ of the novel was surprising.",
+        "options": ["ending", "end", "endings"],
+        "answer": "ending",
+        "meaning": "fin"
+    },
+    {
+        "question": "They decided to ___ the meeting to next week.",
+        "options": ["postpone", "postponed", "postpones"],
+        "answer": "postpone",
+        "meaning": "reporter"
+    },
+    {
+        "question": "The scientist made a significant ___ in the research.",
+        "options": ["discovery", "discoveries", "discover"],
+        "answer": "discovery",
+        "meaning": "découverte"
+    },
+    {
+        "question": "She felt a great sense of ___ after finishing the marathon.",
+        "options": ["achievement", "achievements", "achieve"],
+        "answer": "achievement",
+        "meaning": "réalisation"
+    },
+    {
+        "question": "The chef will ___ the new recipe in tonight’s dinner.",
+        "options": ["introduce", "introduces", "introduced"],
+        "answer": "introduce",
+        "meaning": "introduire"
+    },
+    {
+        "question": "Her ___ to the problem was very creative.",
+        "options": ["solution", "solutions", "solve"],
+        "answer": "solution",
+        "meaning": "solution"
+    }
+]
