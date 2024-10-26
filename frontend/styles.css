@@ -72,8 +72,7 @@ nav * {
 .btns {
     display: flex;
     gap: 20px;
-    
-    
+    justify-content: center;
 }
 .answers{
     white-space:normal;
